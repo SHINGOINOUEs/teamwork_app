@@ -1,5 +1,5 @@
 class AgendasController < ApplicationController
-  # before_action :set_agenda, only: %i[show edit update destroy]
+  before_action :set_agenda, only: %i[show edit update destroy]
 
   def index
     @agendas = Agenda.all
@@ -21,6 +21,17 @@ class AgendasController < ApplicationController
     end
   end
 
+  def destroy
+    if @agenda.user_id == current_user || @agenda.team.owner_id == current_user
+      @agenda.destroy
+      informed_members = @agenda.team.assigns.map(&:user)
+      DeleteAgendaInfotMailer.delete_agenda_infot_mail(informed_members).deliver
+      redirect_to dashboard_url, notice:"アジェンダを削除しました！"
+    else
+      redirect_to team_path(@agenda.team.id), notice: I18n.t('views.messages.no_authority')
+    end
+  end
+
   private
 
   def set_agenda
@@ -30,4 +41,5 @@ class AgendasController < ApplicationController
   def agenda_params
     params.fetch(:agenda, {}).permit %i[title description]
   end
+
 end
