@@ -254,7 +254,8 @@ ja:
       edit_profile: 'プロフィールを編集'
       team_you_belong_to: '所属しているチーム'
       posted_articles: '投稿した記事一覧'
-      leader_only_edit: "リーダーのみ編集できます。"       
+      leader_only_edit: "リーダーのみ編集できます。"  
+      leader_or_mine_destroy: 'チームリーダー又は自分自身のみ削除できます'           
     button:
       submit: '投稿'
       edit: '編集'
@@ -268,3 +269,4 @@ ja:
       line4: '事態が起こってしまうので、それを回避するための社内用アプリケーションです'
     common:
       team: 'チーム'
+      
