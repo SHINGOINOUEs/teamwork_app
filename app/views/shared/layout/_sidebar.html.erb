@@ -38,8 +38,6 @@
               </p>
             </a>
             
-            <%= link_to t('views.button.delete'), agenda, method: :delete, data: { confirm: 'Are you sure?' }, class: 'nav-link d-inline-flex'%>
-
             <% if agenda.user_id == current_user.id || agenda.team.owner_id == current_user.id %>
             <%= link_to t('views.button.delete'), agenda, method: :delete, data: { confirm: 'Are you sure?' }, class: 'nav-link d-inline-flex'%>
             <% end %>            
